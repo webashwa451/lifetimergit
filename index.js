@@ -16,7 +16,7 @@ const secondEl = document.getElementById("second");
 
 const makeTwoDigitNumber = (number) => {
 
-    return number > 9 ? number : '0${number}'
+    return number > 9 ? number : '0${number}';
 };
 
 const toggleDateofBirthselector = () => {
@@ -32,15 +32,15 @@ const toggleDateofBirthselector = () => {
 };
     const updateAge = () => {
 
-    const currentdate = new date();
+    const currentdate = new Date();
 
     const dateDiff = currentdate - dateofBirth;
-    const year = math.floor(dateDiff / (1000 * 60 * 60 * 24 * 365));
-    const month = math.floor(dateDiff / (1000 * 60 * 60 * 24 * 365)) % 12;
-    const day = math.floor(dateDiff / (1000 * 60 * 60 * 24 )) % 30;
-    const hour = math.floor(dateDiff / (1000 * 60 * 60 )) % 24;
-    const minute = math.floor(dateDiff / (1000 * 60 )) % 60;
-    const second = math.floor(dateDiff / 1000 ) % 60;
+    const year = Math.floor(dateDiff / (1000 * 60 * 60 * 24 * 365));
+    const month = Math.floor(dateDiff / (1000 * 60 * 60 * 24 * 365)) % 12;
+    const day = Math.floor(dateDiff / (1000 * 60 * 60 * 24 )) % 30;
+    const hour = Math.floor(dateDiff / (1000 * 60 * 60 )) % 24;
+    const minute = Math.floor(dateDiff / (1000 * 60 )) % 60;
+    const second = Math.floor(dateDiff / 1000 ) % 60;
 
     yearEl.innerHTML = makeTwoDigitNumber(year);
     monthEl.innerHTML = makeTwoDigitNumber(month);
@@ -50,12 +50,12 @@ const toggleDateofBirthselector = () => {
     secondEl.innerHTML = makeTwoDigitNumber(second);
 };
 const localStoragegetter = () => {
-    const year = localStorage.getItem(year);
-    const month = localStorage.getItem(month);
-    const day = localStorage.getItem(day);
-    const hour = localStorage.getItem(hour);
-    const minute = localStorage.getItem(minute);
-    const second = localStorage.getItem(second);
+    const year = localStorage.getItem("year");
+    const month = localStorage.getItem("month");
+    const day = localStorage.getItem("day");
+    const hour = localStorage.getItem("hour");
+    const minute = localStorage.getItem("minute");
+    const second = localStorage.getItem("second");
     if(year && month && day && hour && minute && second){
         dateofBirth = new date(year, month , day , hour , minute ,second);
 }
@@ -78,7 +78,7 @@ const contenttoggler = () => {
 const setDOBHandler = () => {
    
     const datestring = dobinputEl.value;
-    dateofBirth = datestring ? new date(datestring) : null;
+    dateofBirth = datestring ? new Date(datestring) : null;
 
     
     }
@@ -87,15 +87,15 @@ const setDOBHandler = () => {
 
     if(dateofBirth) {
         localStorage.setItem("year", dateofBirth.getFullYear());
-        localStorage.setItem("month", dateofBirth.getFullmonth());
-        localStorage.setItem("day", dateofBirth.getFullday());
-        localStorage.setItem("hour", dateofBirth.getFullhour());
-        localStorage.setItem("minute", dateofBirth.getFullminute());
-        localStorage.setItem("second", dateofBirth.getFullsecond());
+        localStorage.setItem("month", dateofBirth.getmonth());
+        localStorage.setItem("day", dateofBirth.getday());
+        localStorage.setItem("hour", dateofBirth.gethour());
+        localStorage.setItem("minute", dateofBirth.getminute());
+        localStorage.setItem("second", dateofBirth.getsecond());
     
     } 
     contenttoggler();  
-    setinterval(() => updateAge(), 1000);
+    setInterval(() => updateAge(), 1000);
     
 
 localStoragegetter();
